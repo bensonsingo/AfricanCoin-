@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <meta name="description" content="Whitepaper for AfricanCoin (ACN), a blockchain-powered cryptocurrency for the African market.">
+    <meta name="author" content="Benson">
+    <title>AfricanCoin Whitepaper</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: white;
+            color: black;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            
+        }
+
+        header p {
+            font-size: 1.2rem;
+            
+        }
+
+        nav {
+            background-color: white ;
+            padding: 15px;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: orange ;
+            margin-bottom: 10px;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            color: black;
+            margin-top: 20px;
+        }
+
+        section p,
+        section ul {
+            font-size: 1.1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            section h2 {
+                font-size: 1.7rem;
+            }
+
+            section h3 {
+                font-size: 1.3rem;
+            }
+
+            section p,
+            section ul {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+            }
+/* Center the icon and the text */
+.feature-item h3 {
+    display: flex;
+    flex-direction: column; /* Stack the icon and text vertically */
+    align-items: center; /* Center everything */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Optional: space between items */
+}
+
+/* Style the icon */
+.feature-icon {
+    font-size: 48px; /* Make the icon large */
+    margin-bottom: 10px; /* Space between icon and text */
+}
+            section {
+                padding: 10px;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            section h3 {
+                font-size: 1.2rem;
+            }
+
+            section p,
+            section ul {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Add to your existing CSS */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+#cryptoAdoptionChart {
+    display: block;
+    margin: 20px auto;
+    max-width: 90%;
+}
+        .fade-in-init {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Header animation: Slide down */
+.slide-down-init {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.slide-down {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Nav animation: Fade in from left */
+.fade-in-left-init {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+body {
+    transition: background-color 0.5s ease; /* Smooth transition for background color */
+    background-color: white; /* Initial background color */
+    color: black; /* Default text color */
+}
+
+body.bg-grey {
+    background-color: grey; /* When scrolled to a certain point */
+}
+
+body.bg-black {
+    background-color: black; /* When scrolled to another point */
+    
+}
+
+body.bg-white-final {
+    background-color: white; /* Final state to remain white */
+}    </style>
+</head>
+
+<body>
+    <header class="slide-down-init">
+    <h1>AfricanCoin (ACN) Whitepaper</h1>
+    <p>Empowering Africa through decentralized finance and blockchain technology</p>
+</header>
+
+<nav class="fade-in-left-init">
+    <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+<section id="charity" >
+    <h2 class="hidden">Charity Initiatives with OliveTree Investments</h2>
+    <p class="hidden">Charity partnership with OliveTree Investments, we are committed to addressing critical challenges in underdeveloped African countires by using Crypto. Our charity initiatives will focus on essential sectors such as clean water, food security, education, renewable energy, and financial inclusion, among others. Here’s how we’re making a difference:</p>
+    <ul class="hidden">
+        <li><i class="fas fa-tint"></i><strong>Clean Water & Water Resources:</strong> We will invest in projects that improve access to clean drinking water, reduce water scarcity, and ensure sustainable water management practices.</li>
+        <li ><i class="fas fa-tractor"></i><strong>Food Security & Agricultural Activities:</strong> OliveTree will support sustainable agriculture and food processing projects, helping local communities with the tools, training, and resources they need to thrive.</li>
+        <li><i class="fas fa-book-open"></i><strong>Education:</strong> We will invest in local education programs, providing the necessary infrastructure and resources to uplift young generations with knowledge and skills for a brighter future.</li>
+        <li><i class="fas fa-solar-panel"></i><strong>Solar Energy:</strong> Focused on renewable energy solutions, we will implement solar energy projects to provide affordable electricity to communities, helping reduce dependency on fossil fuels.</li>
+        <li><i class="fas fa-building"></i><strong>Real Estate & Building Techniques:</strong> Our investments will include affordable housing projects and sustainable building techniques that improve living conditions and provide long-term benefits to local economies.</li>
+        <li><i class="fas fa-coins"></i><strong>Technical & Financial Services:</strong> OliveTree will provide access to financial services, promoting entrepreneurship and empowering local businesses through digital tools and education.</li>
+        <li class="hidden"><i class="fas fa-network-wired"></i><strong>Internet Connectivity:</strong> We aim to improve internet access in remote areas by providing mobile connectivity and Internet of Things (IoT) solutions, empowering communities with better opportunities for growth and education.</li>
+    </ul>
+    <p >All of these initiatives will be supported by the funds generated from transactions within AfricanCoin . As the price of African Coin increases, we will allocate a portion of the transaction fees to fund these impactful projects in counties with poor conditions and those suffering from high inflation. The rising value of our ecosystem will directly help tackle these challenges by driving investments and facilitating infrastructure development, offering a brighter and more sustainable future for the most vulnerable populations.</p>
+</section>
+
+    <section id="overview" class="fade-in-init">
+ <section id="overview" class="hidden">
+    <h2>Overview</h2>
+        
+    <canvas id="cryptoAdoptionChart" width="800" height="400"></canvas>
+    
+    <p>AfricanCoin (ACN) is a decentralized cryptocurrency developed to serve as a digital asset for African economies.
+    
+    
+     Built on the Ethereum blockchain using the ERC-20 standard, AfricanCoin is designed to bridge financial gaps in Africa and support economic growth through blockchain technology.</p>
+    <p>The AfricanCoin ecosystem aims to revolutionize the way financial transactions are conducted by offering a stable and secure digital currency that caters to both individuals and businesses across the African continent.</p>
+
+</section>
+<script >
+document.addEventListener("DOMContentLoaded", () => {
+    const ctx = document.getElementById('cryptoAdoptionChart').getContext('2d');
+
+    // Sample data
+    const labels = ['2020', '2021', '2022', '2023', '2024'];
+    const africaData = [10, 15, 20, 30, 40]; // Example: Africa adoption in percentages
+    const asiaData = [25, 35, 45, 50, 55];
+    const usaData = [20, 25, 30, 40, 50];
+    const europeData = [15, 20, 25, 30, 35];
+
+    new Chart(ctx, {
+        type: 'line', // Change to 'line'
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Africa',
+                    data: africaData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true, // Optional: Makes the line chart area fillable
+                    tension: 0.4 // Smoothing of the line
+                },
+                {
+                    label: 'Asia',
+                    data: asiaData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'USA',
+                    data: usaData,
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Europe',
+                    data: europeData,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Cryptocurrency Adoption Rates (2020-2024)'
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Adoption Rate (%)'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+<section id="vision"class="hidden">
+    <h2>Vision</h2>
+    
+    <p>AfricanCoin (ACN) is a digital asset that allows you to store your cash securely in coins, offering a smart way to safeguard and grow your wealth. It’s not just a coin—it’s an opportunity to transform your savings into a digital asset that can appreciate over time.</p>
+   <p>With AfricanCoin, you can store your cash in coins, watching its value increase as the cryptocurrency market grows. You can also easily transfer crypto, giving you the flexibility to manage your money across borders and participate in the global digital economy.</p>
+   <p>By holding AfricanCoin, you’re not just protecting your funds—you’re taking part in Africa’s rise in the cryptocurrency world, helping to boost the continent’s adoption of digital finance while securing your financial future.</p>
+</section>
+    
+     <h2 class="hidden">Active Crypto Wallets by Region</h2>
+    <canvas id="cryptoPieChart" width="400" height="400" class="hidden"></canvas> <!-- Pie chart canvas -->
+
+    <script>
+        // Data for the pie chart - Replace with actual data
+        const data = {
+            labels: ['USA', 'Africa', 'Asia', 'Europe'], // Regions
+            datasets: [{
+                label: 'Active Crypto Wallets',
+                data: [45, 30, 20, 5],  // Example values (replace with real data)
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',  // USA (Red)
+                    'rgba(54, 162, 235, 0.6)',  // Africa (Blue)
+                    'rgba(255, 206, 86, 0.6)',  // Asia (Yellow)
+                    'rgba(75, 192, 192, 0.6)'   // Europe (Green)
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',  // USA
+                    'rgba(54, 162, 235, 1)',  // Africa
+                    'rgba(255, 206, 86, 1)',  // Asia
+                    'rgba(75, 192, 192, 1)'   // Europe
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Config for the pie chart
+        const config = {
+            type: 'pie', // Pie chart type
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',  // Position of the legend
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                // Customizing tooltips to show percentage
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Creating the chart
+        const ctx = document.getElementById('cryptoPieChart').getContext('2d'); // Get the canvas context
+        new Chart(ctx, config); // Initialize the chart
+    </script>
+    
+    
+  <section id="overview">
+   
+   
+    <h3 class="hidden">Key Goals</h3>
+    <ul>
+        <li>Empower individuals and businesses in Africa to combat inflation.</li>
+        <li>Provide a decentralized, secure, and easy-to-use payment platform.</li>
+        <li>Support the development of peer-to-peer transactions and financial inclusion.</li>
+        <li>Become a stable alternative to local currencies and global economic instability.</li>
+    </ul>
+
+    <!-- Adding an engaging Three.js element for dynamic visuals -->
+    <h3>Interactive 3D Visualization</h3>
+    <p>Experience AfricanCoin's vision in a dynamic 3D space. Watch as the African continent is symbolized in real-time using Three.js, showcasing the potential for financial growth, peer-to-peer transactions, and blockchain integration throughout the region.</p>
+    <div id="threejs-container" style="height: 400px; width: 100%;"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    // Three.js basic setup for a 3D scene showcasing Africa and the digital economy
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer();
+
+    // Adjust the size of the renderer to match the container
+    var container = document.getElementById('threejs-container');
+    renderer.setSize(container.clientWidth, container.clientHeight); // Uses container size
+    container.appendChild(renderer.domElement);
+
+    var geometry = new THREE.SphereGeometry(2, 32, 32);
+    var material = new THREE.MeshBasicMaterial({color: 0x0077b6});
+    var sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+
+    camera.position.z = 5;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+
+    animate();
+</script>
+</section>
+
+<section id="features" class="hidden">
+    <h2>Features</h2>
+
+    <div class="feature-item">
+        <h3><span class="feature-icon fas fa-shield-alt"></span> Secure and Decentralized</h3>
+        <p>Built on the Ethereum blockchain, AfricanCoin offers a decentralized solution to financial transactions, ensuring security and transparency for all users.</p>
+    </div>
+
+    <div class="feature-item" class="hidden">
+        <h3 class="hidden"><span class="feature-icon fas fa-wallet" ></span> Affordable and Accessible</h3>
+        <p>With a low transaction fee and an easy-to-use wallet interface, AfricanCoin is designed to be accessible to everyone, from individuals to businesses.</p>
+    </div>
+
+    <div class="feature-item">
+        <h3><span class="feature-icon fas fa-cogs"></span> Token Release Mechanism</h3>
+        <p>Tokens are released periodically according to a pre-defined schedule. Automatic releases ensure that the supply is distributed fairly and efficiently.</p>
+    </div>
+
+    <div class="feature-item">
+        <h3 class="hidden"><span class="feature-icon fas fa-users"></span> Community Support and Growth</h3>
+        <p class="hidden">AfricanCoin aims to foster a community-driven ecosystem, where influencers, investors, and users play an active role in the growth and development of the coin.</p>
+    </div>
+</section>
+
+<section id="tokenomics" style="padding: 20px; background-color: #f9f9f9;"class="hidden" >
+    <h2 style="color: #2c3e50;">Tokenomics</h2>
+    
+    <!-- Total Supply Section -->
+    <h3 style="color: #34495e;">Total Supply</h3>
+    <p>The total supply of AfricanCoin is capped at 149 million ACN tokens. The breakdown of the supply is as follows:</p>
+    <ul>
+        <li>Total Public Release: 77 million tokens</li>
+        <li>Initial Public Release: 27.3 million tokens</li>
+        <li>Batch Release: 13 million tokens every 10 years</li>
+        <li>Max Purchase Limit: 250,000 coins per address and week</li>
+    </ul>
+    <h3 class="hidden" style="color: #34495e; margin-top: 30px;">Batch Token Release Chart (Until 2070)</h3>
+<canvas class="hidden" id="batchReleaseChart" width="600" height="400"></canvas>
+
+<!-- JavaScript for the Chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Data for batch token releases and years
+    const years = [];
+    const totalSupply = 77_000_000;  // Total coin supply
+    const publicTokens = 27_300_000; // Public token allocation
+    const batchTokens = 49_700_000;  // Remaining coins for batch releases
+    const releasedTokens = [];
+
+    // Release intervals for batch tokens (for 47 years)
+    const releaseIntervals = 47; // 47 years total (2024-2070)
+    const batchReleaseAmount = 13_000_000; // Additional release every 10 years
+
+    let accumulatedTokens = 0;
+    let accumulatedPublicTokens = 0;
+    let accumulatedBatchTokens = 0;
+
+    // Simulate the batch release over 47 years
+    for (let i = 0; i <= releaseIntervals; i++) {
+        years.push(2024 + i); // Start from 2024
+        
+        // Initial public release (first release of 27.3 million in 2024)
+        if (i === 0) {
+            accumulatedPublicTokens = publicTokens;
+        }
+        
+        // Batch Release every 10 years, starting after the first public release
+        if (i > 0 && i % 10 === 0) {
+            accumulatedBatchTokens += batchReleaseAmount;
+        }
+        
+        // Total tokens released (batch release only)
+        accumulatedTokens = accumulatedBatchTokens;
+        releasedTokens.push(accumulatedTokens);
+    }
+
+    const ctxBatch = document.getElementById('batchReleaseChart').getContext('2d'); // Reference to the new canvas identifier
+    const batchReleaseChart = new Chart(ctxBatch, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'Batch Tokens Released (in Millions)',
+                    data: releasedTokens.map(val => val / 1_000_000), // Display in millions
+                    borderColor: '#3498db', // Color for the batch release line
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3,
+                }
+            ]
+        },
+        options: {
+            responsive: true, // Ensures the chart is responsive
+            maintainAspectRatio: true, // Prevents stretching and maintains aspect ratio
+            aspectRatio: 2, // 2:1 aspect ratio (width to height)
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Tokens Released (in Millions)'
+                    },
+                    max: totalSupply / 1_000_000,  // Maximum of total supply in millions
+                    beginAtZero: true,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        // Show details in tooltips
+                        label: (tooltipItem) => {
+                            const value = tooltipItem.raw;
+                            return `Total Released: ${value} Million Tokens`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+    <!-- Allocations Section -->
+    <h3 style="color: #34495e;">Allocations</h3>
+    <p>Allocations are divided into several categories to ensure fair distribution and long-term sustainability:</p>
+    <ul>
+        <li>African Exchange Allocation: 23 million tokens</li>
+        <li>ICO Investors Allocation: 14.4 million tokens</li>
+        <li>Team Allocation: 5.8 million tokens</li>
+        <li>Influencers Allocation: 5.8 million tokens</li>
+        <li>Founder Allocation: 9 million tokens</li>
+        <li>Liquidity Providers Allocation: 11.7 million tokens</li>
+    </ul>
+    
+    <!-- Staking and Rewards Section -->
+    <h3 style="color: #34495e;">Staking and Rewards</h3>
+    <p>AfricanCoin supports staking, offering a 4% Annual Percentage Yield (APY) for stakers. Rewards are allocated from the staking pool, which accumulates from token distributions.</p>
+
+    <!-- Chart Section -->
+    <h3 style="color: #34495e; margin-top: 30px;">Allocation Chart</h3>
+    <canvas id="allocationChart" width="400" height="200"></canvas>
+    
+    <!-- JavaScript for the Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chart data and configuration
+        const ctx = document.getElementById('allocationChart').getContext('2d');
+        const allocationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'African Exchange', 
+                    'ICO Investors', 
+                    'Team', 
+                    'Influencers', 
+                    'Founder', 
+                    'Liquidity Providers'
+                ],
+                datasets: [{
+                    label: 'Allocation in Million Tokens',
+                    data: [23, 14.4, 5.8, 5.8, 9, 11.7],
+                    backgroundColor: [
+                        '#2ecc71', '#3498db', '#e74c3c', '#9b59b6', '#f39c12', '#34495e'
+                    ],
+                    borderColor: [
+                        '#27ae60', '#2980b9', '#c0392b', '#8e44ad', '#e67e22', '#2c3e50'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Tokens (Millions)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</section>
+
+
+
+    <section id="roadmap" class="hidden">
+        <h2>Roadmap</h2>
+        <ul>
+            <li>Q1 2025: ICO Launch and Public Release</li>
+            <li>Q2 2025: Token Staking and Rewards Program</li>
+            <li>Q3 2025: Partnerships with African Exchanges</li>
+            <li>Q4 2025: Community-driven initiatives and OliveTree Investment Integration</li>
+            <li>2025: Expansion into global markets and liquidity provision</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="hidden">
+        <h2>Contact</h2>
+        <p>For more information, questions, or partnership inquiries, please contact us:</p>
+        <p>Email: <a href="mailto:support@africancoin.com">support@africancoin.com</a></p>
+        <p>Website: <a href="https://www.africancoin.com">www.africancoin.com</a></p>
+    </section>
+
+    <footer class="hidden">    <p>&copy; 2024 AfricanCoin. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    // Function to observe sections as they come into view
+    const sections = document.querySelectorAll('.hidden');  // Select all sections with the "hidden" class
+
+    const observerOptions = {
+        root: null,  // Defaults to the viewport
+        threshold: 0.2  // Trigger when 20% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');  // Add the "visible" class when the section comes into view
+                observer.unobserve(entry.target);  // Stop observing once the animation has been triggered
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);  // Observe each section
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+    const section = document.getElementById("overview");
+    
+    // Add the fade-in effect with a slight delay
+    setTimeout(() => {
+        section.classList.add("fade-in");
+    }, 300); // Adjust the delay for rhythmic flow
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header");
+    const nav = document.querySelector("nav");
+
+    // Slide down animation for the header
+    setTimeout(() => {
+        header.classList.add("slide-down");
+    }, 300); // Adjust delay as needed
+
+    // Fade in from left animation for the nav
+    setTimeout(() => {
+        nav.classList.add("fade-in-left");
+    }, 600); // Adjust delay to stagger animations
+});
+</script>
+<script>
+    // JavaScript for scroll-based background color change
+    window.addEventListener('scroll', function () {
+        const scrollPosition = window.scrollY;
+        const body = document.body;
+
+        // Adjust the scroll position thresholds for earlier start and longer end
+        if (scrollPosition > 1000) {  // Longer scroll effect
+            body.classList.add('bg-white-final');
+            body.classList.remove('bg-grey', 'bg-black');
+        } else if (scrollPosition > 1800) {
+            body.classList.add('bg-black');
+            body.classList.remove('bg-grey');
+        } else if (scrollPosition > 1200) {
+            body.classList.add('bg-grey');
+            body.classList.remove('bg-white-final', 'bg-black');
+        } else if (scrollPosition > 600) {  // Start earlier at 600px
+            body.classList.add('bg-white');
+            body.classList.remove('bg-grey', 'bg-black');
+        } else {
+            body.classList.remove('bg-grey', 'bg-black', 'bg-white-final');
+            body.style.transition = "background-color 0.5s ease";  // Reset transition back to smooth
+        }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+    // Sample data for the chart (you should replace these with actual data)
+    const data = {
+        labels: ['USA', 'Africa', 'Asia', 'Europe'],
+        datasets: [{
+            label: 'Active Crypto Wallets',
+            data: [45, 30, 20, 5],  // Example data: Replace with real data
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',  // USA
+                'rgba(54, 162, 235, 0.6)',  // Africa
+                'rgba(255, 206, 86, 0.6)',  // Asia
+                'rgba(75, 192, 192, 0.6)'   // Europe
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',  // USA
+                'rgba(54, 162, 235, 1)',  // Africa
+                'rgba(255, 206, 86, 1)',  // Asia
+                'rgba(75, 192, 192, 1)'   // Europe
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    // Create the chart
+    const ctx = document.getElementById('cryptoPieChart').getContext('2d');
+    new Chart(ctx, config);
+</script>
+
+</body>
+</html>
+
